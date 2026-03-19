@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Unbekannt</title>
+<title>Something is Coming</title>
 <style>
   html, body {
     margin: 0;
@@ -39,7 +39,7 @@
 <canvas id="bubbleCanvas"></canvas>
 
 <script>
-// Countdown setup
+
 const targetDate = new Date(Date.UTC(2026, 3, 5, 0, 0, 0));
 function updateCountdown() {
     const now = new Date();
@@ -59,7 +59,7 @@ function updateCountdown() {
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-// Bubble effect
+
 const canvas = document.getElementById('bubbleCanvas');
 const ctx = canvas.getContext('2d');
 let W = canvas.width = window.innerWidth;
@@ -81,7 +81,7 @@ window.addEventListener('mousemove', e => {
     lastMoveTime = Date.now();
 });
 
-// Detect tab inactive
+
 document.addEventListener('visibilitychange', () => {
     if(document.hidden) mouseActive = false;
 });
@@ -104,23 +104,23 @@ class Bubble {
         ctx.fill();
     }
     update() {
-        // check if mouse recently moved (<2s)
+
         const active = mouseActive && (Date.now() - lastMoveTime < 2000);
 
         if(active) {
-            // move slightly toward mouse
+      
             const dx = mouse.x - this.x;
             const dy = mouse.y - this.y;
             this.x += dx * 0.01;
             this.y += dy * 0.01;
         } else {
-            // free float
+            // ff
             this.x += Math.cos(this.angle) * this.speed;
             this.y += Math.sin(this.angle) * this.speed;
             this.angle += 0.01;
         }
 
-        // wrap around screen
+
         if(this.x < 0) this.x = W;
         if(this.x > W) this.x = 0;
         if(this.y < 0) this.y = H;
